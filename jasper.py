@@ -5,6 +5,7 @@ import os
 import sys
 import shutil
 import logging
+import random
 
 import yaml
 import argparse
@@ -107,14 +108,20 @@ class Jasper(object):
                        stt_engine_class.get_active_instance())
 
     def run(self):
+        # Random welcome message
+        welcomes = ["What do you need",
+                    "How can I help"]
+
+        salutation = random.choice(welcomes)
         if 'first_name' in self.config:
-            salutation = ("How can I be of service, %s?"
-                          % self.config["first_name"])
+            salutation = ("%s, %s?"
+                          % (salutation, self.config["first_name"]))
         else:
-            salutation = "How can I be of service?"
+            salutation = ("%s?" % salutation)
+
         self.mic.say(salutation)
 
-        conversation = Conversation("JASPER", self.mic, self.config)
+        conversation = Conversation("MAX", self.mic, self.config)
         conversation.handleForever()
 
 if __name__ == "__main__":

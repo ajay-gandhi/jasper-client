@@ -10,6 +10,8 @@ import pyaudio
 import alteration
 import jasperpath
 
+import random
+from   time import sleep
 
 class Mic:
 
@@ -113,7 +115,7 @@ class Mic:
         frames = []
 
         # stores the lastN score values
-        lastN = [i for i in range(30)]
+        lastN = [i for i in range(50)]
 
         # calculate the long run average, and thereby the proper threshold
         for i in range(0, RATE / CHUNK * THRESHOLD_TIME):
@@ -210,7 +212,10 @@ class Mic:
         if THRESHOLD is None:
             THRESHOLD = self.fetchThreshold()
 
-        self.speaker.play(jasperpath.data('audio', 'beep_hi.wav'))
+        # Random greeting
+        greetings = ["What do you need", "Whatt?", "Yah?"]
+        phrase = alteration.clean(random.choice(greetings))
+        self.speaker.say(phrase)
 
         # prepare recording stream
         stream = self._audio.open(format=pyaudio.paInt16,
@@ -260,3 +265,4 @@ class Mic:
         # alter phrase before speaking
         phrase = alteration.clean(phrase)
         self.speaker.say(phrase)
+
