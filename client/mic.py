@@ -214,9 +214,12 @@ class Mic:
             THRESHOLD = self.fetchThreshold()
 
         # Random greeting
+        """
         greetings = ["What do you need", "Whatt?", "Yah?"]
         phrase = alteration.clean(random.choice(greetings))
         self.speaker.say(phrase)
+        """
+        self.speaker.play(jasperpath.data('audio', 'beep_hi.wav'))
 
         # prepare recording stream
         stream = self._audio.open(format=pyaudio.paInt16,
@@ -246,10 +249,13 @@ class Mic:
                 break
 
         # Random interim saying
+        """
         greetings = ["Let me check", "Let me see", "One sec",
                      "Hold on", "Searching NSA database"]
         phrase = alteration.clean(random.choice(greetings))
         self.speaker.say(phrase)
+        """
+        self.speaker.play(jasperpath.data('audio', 'beep_lo.wav'))
 
         # save the audio data
         stream.stop_stream()
