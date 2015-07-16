@@ -115,7 +115,7 @@ class Mic:
         frames = []
 
         # stores the lastN score values
-        lastN = [i for i in range(50)]
+        lastN = [i for i in range(30)]
 
         # calculate the long run average, and thereby the proper threshold
         for i in range(0, RATE / CHUNK * THRESHOLD_TIME):
@@ -227,7 +227,7 @@ class Mic:
         frames = []
         # increasing the range # results in longer pause after command
         # generation
-        lastN = [THRESHOLD * 1.2 for i in range(30)]
+        lastN = [THRESHOLD * 1.2 for i in range(75)]
 
         for i in range(0, RATE / CHUNK * LISTEN_TIME):
 
