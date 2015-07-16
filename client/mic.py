@@ -227,7 +227,7 @@ class Mic:
         frames = []
         # increasing the range # results in longer pause after command
         # generation
-        lastN = [THRESHOLD * 1.2 for i in range(75)]
+        lastN = [THRESHOLD * 1.2 for i in range(85)]
 
         for i in range(0, RATE / CHUNK * LISTEN_TIME):
 

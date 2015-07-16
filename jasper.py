@@ -121,7 +121,7 @@ class Jasper(object):
 
         self.mic.say(salutation)
 
-        conversation = Conversation("MAX", self.mic, self.config)
+        conversation = Conversation("SAGE", self.mic, self.config)
         conversation.handleForever()
 
 if __name__ == "__main__":
