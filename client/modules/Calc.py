@@ -1,11 +1,11 @@
 
 import re
 
-WORDS = ["+", "-", "X", "DIVIDED"]
+WORDS = ["+", "-", "X", "PLUS", "MINUS", "TIMES", "DIVIDED"]
 
 def handle(text, mic, profile):
     # Find all the numbers and which operations to do
-    ops = re.findall(r'\b(\+|\-|X|divided)\b', text, re.IGNORECASE)    
+    ops = re.findall(r'\b(\+|\-|X|plus|minus|times|divided)\b', text, re.IGNORECASE)    
     numbers = re.findall(r'\b\d+\b', text, re.IGNORECASE)
 
     result = int(numbers.pop(0))
@@ -14,9 +14,12 @@ def handle(text, mic, profile):
         next_op  = ops.pop(0)
 
         result = {
-            '+':   lambda x: result + x,
-            '-':   lambda x: result - x,
-            'X':   lambda x: result * x,
+            '+':       lambda x: result + x,
+            '-':       lambda x: result - x,
+            'X':       lambda x: result * x,
+            'plus':    lambda x: result + x,
+            'minus':   lambda x: result - x,
+            'times':   lambda x: result * x,
             'divided': lambda x: result / x
         }[next_op](next_num)
 
@@ -24,5 +27,5 @@ def handle(text, mic, profile):
 
 def isValid(text):
     # Valid if contains a math word
-    return bool(re.search(r'\b(\+|\-|X|divided)\b', text, re.IGNORECASE))
+    return bool(re.search(r'\b(\+|\-|X|plus|minus|times|divided)\b', text, re.IGNORECASE))
 
