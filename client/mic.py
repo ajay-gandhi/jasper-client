@@ -206,6 +206,7 @@ class Mic:
 
         RATE = 16000
         CHUNK = 1024
+        MIN_TIME = 4
         LISTEN_TIME = 12
 
         # check if no threshold provided
@@ -227,7 +228,7 @@ class Mic:
         frames = []
         # increasing the range # results in longer pause after command
         # generation
-        lastN = [THRESHOLD * 1.2 for i in range(85)]
+        lastN = [THRESHOLD * 1.2 for i in range(30)]
 
         for i in range(0, RATE / CHUNK * LISTEN_TIME):
 
@@ -241,7 +242,7 @@ class Mic:
             average = sum(lastN) / float(len(lastN))
 
             # TODO: 0.8 should not be a MAGIC NUMBER!
-            if average < THRESHOLD * 0.8:
+            if average < THRESHOLD * 0.8 and i > (RATE / CHUNK * MIN_TIME):
                 break
 
         # Random interim saying
