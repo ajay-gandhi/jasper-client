@@ -244,7 +244,11 @@ class Mic:
             if average < THRESHOLD * 0.8:
                 break
 
-        self.speaker.play(jasperpath.data('audio', 'beep_lo.wav'))
+        # Random interim saying
+        greetings = ["Let me check", "Let me see", "One sec",
+                     "Hold on", "Searching NSA database"]
+        phrase = alteration.clean(random.choice(greetings))
+        self.speaker.say(phrase)
 
         # save the audio data
         stream.stop_stream()
