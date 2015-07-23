@@ -7,7 +7,7 @@ import sys
 from sys import maxint
 
 from client import jasperpath
-WORDS = ["WHO", "WHAT", "HOW", "TELL", "ME", "ABOUT"]
+WORDS = ["WHO", "WHAT", "HOW", "TELL", "ME", "ABOUT", "DEFINE"]
 
 PRIORITY = -1
 
@@ -38,6 +38,8 @@ def isValid(text):
     elif re.search(r'\bhow\b', text, re.IGNORECASE):
         return True
     elif re.search(r'\btell me about\b', text, re.IGNORECASE):
+        return True
+    elif re.search(r'\bdefine\b', text, re.IGNORECASE):
         return True
     else:
         return False
